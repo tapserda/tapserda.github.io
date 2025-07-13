@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeffri Tan Apserda</title>
+  <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<style>
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    section {
+      scroll-snap-align: start;
+    }
+    body {
+      font-family: 'TikTok Sans', sans-serif;
+    }
+
+    /* Background gradient */
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Navbar */
+    .project-box {
+      background: #0a0a0a;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .project-box:hover {
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.12);
+      transform: translateY(-4px);
+    }
+
+    /* Animasi buka/tutup detail */
+    .expandable {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+    }
+
+    .expandable.show {
+      max-height: 35vh;
+      opacity: 1;
+      overflow-y: auto;
+    }
+
+    /* Transition navbar scroll mode */
+    .navbar-default {
+      background-color: rgba(51, 11, 102, 0.85);
+      border-bottom: 1px solid #4b0082;
+    }
+    .navbar-dark {
+      background-color: #000;
+      border-bottom: 1px solid white;
+    }
+    /* Hapus gaya default panah bawaan */
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+      display: none;
+    }
+
+    /* Feather icon container */
+    .custom-swiper-arrow {
+      width: 30px;
+      height: 30px;
+      background: transparent;
+      color: purple;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+      z-index: 10;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+    }
+
+    .custom-swiper-arrow:hover {
+      opacity: 1;
+    }
+
+    /* Posisi kiri dan kanan */
+    .swiper-button-prev {
+      left: -10px;
+    }
+
+    .swiper-button-next {
+      right: -10px;
+    }
+
+    /* Feather icon style */
+    .custom-swiper-arrow i {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.5;
+    }
+
+    /* Scrollbar styling for project details */
+    #detail1,
+    #detail2,
+    #detail3 {
+      scrollbar-width: thin;
+      scrollbar-color: #a78bfa transparent;
+    }
+
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-purple-900 to-black text-white overflow-x-hidden">
+  <!-- Navbar -->
+<nav id="navbar" class="navbar-default fixed top-0 left-0 w-full z-50 py-4 px-6 flex items-center justify-between backdrop-blur transition-all duration-500 text-center">
+  <div class="text-2xl font-bold tracking-wide text-purple-500">TAPS</div>
+  <a href="#contact" class="bg-white text-purple-500 font-semibold px-5 py-2 rounded-full hover:bg-gray-200 transition-all duration-300">Contact Me</a>
+</nav>
+
+  <!-- Section: Intro -->
+   <section class="relative h-screen text-center flex items-center justify-center px-6 pt-16 text-purple-800">
+    <div id="particles-js" class="absolute inset-0 -z-10"></div>
+    <div class="max-w-6xl w-full glass rounded-xl p-10 grid grid-cols-1 md:grid-cols-2 gap-10 shadow-lg">
+      <div class="flex justify-center items-center text-center">
+        <img src="user.png" alt="Foto Jeffri" class="w-48 h-48 rounded-full object-cover border-4 border-purple-800 shadow-xl">
+      </div>
+      <div class="flex flex-col justify-center text-center">
+        <h1 class="text-4xl font-bold mb-2">JEFFRI TAN APSERDA</h1>
+        <h2 class="text-xl text-purple-300 mb-6">Web Developer | UI Designer</h2>
+        <p class="text-purple-300 mb-4">Saya adalah seorang web developer dan UI designer yang membangun website modern, responsif, dan user-friendly.</p>
+        <div>
+          <h3 class="text-lg font-semibold mb-1">Keahlian & Tools:</h3>
+          <ul class="list-disc list-inside text-purple-300 space-y-1">
+            <li>HTML, CSS, JavaScript, PHP, Python</li>
+            <li>Tailwind CSS, Bootstrap</li>
+            <li>React.js, Node.js, Laravel</li>
+            <li>Git & GitHub, Figma, Notion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Projects -->
+<section id="projects" class="h-screen text-center snap-start px-6 py-24 bg-gradient-to-br from-black to-gray-900 text-white flex items-center">
+  <div class="max-w-5xl mx-auto w-full">
+    <h2 class="text-3xl font-bold text-center mb-10">Projek Terbaru</h2>
+
+    <div class="swiper mySwiper relative">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="project-box text-center">
+            <h3 class="text-xl font-semibold mb-2">Online Shop Website</h3>
+            <p class="text-gray-400 text-sm mb-4">Website responsif untuk berjualan produk.</p>
+            <button onclick="toggleDetail(this, 'detail1')" class="text-sm text-purple-300 underline hover:text-white">Lihat Detail</button>
+            <div id="detail1" class="expandable mt-4">
+              <img src="project1.png" alt="Landing Page" class="w-full h-48 object-cover rounded-lg border border-purple-700 mb-2">
+              <p class="text-gray-500 text-sm">Dibuat menggunakan CMS populer Wordpress dan Shopify, mengembangkan desain minimalis dan modern.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="project-box">
+            <h3 class="text-xl font-semibold mb-2">Data Scrapper</h3>
+            <p class="text-gray-400 text-sm mb-4">Mengumpulkan data-data menggunakan Python.</p>
+            <button onclick="toggleDetail(this, 'detail2')" class="text-sm text-purple-300 underline hover:text-white">Lihat Detail</button>
+            <div id="detail2" class="expandable mt-4">
+              <img src="project2.png" alt="Dashboard" class="w-full h-48 object-cover rounded-lg border border-purple-700 mb-2">
+              <p class="text-gray-500 text-sm">Mengumpulkan data dari marketplace online menggunakan Python otomatis.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="swiper-slide">
+          <div class="project-box">
+            <h3 class="text-xl font-semibold mb-2">Portfolio Modern</h3>
+            <p class="text-gray-400 text-sm mb-4">Portfolio one-page profesional.</p>
+            <button onclick="toggleDetail(this, 'detail3')" class="text-sm text-purple-300 underline hover:text-white">Lihat Detail</button>
+            <div id="detail3" class="expandable mt-4">
+              <img src="project3.png" alt="Portfolio" class="w-full h-48 object-cover rounded-lg border border-purple-700 mb-2">
+              <p class="text-gray-500 text-sm">Desain clean dengan JavaScript dan Tailwind, menampilkan animasi scroll dan integrasi kontak via email.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Custom Navigation Arrows -->
+        <div class="swiper-button-prev custom-swiper-arrow">
+          <i data-feather="chevron-left"></i>
+        </div>
+        <div class="swiper-button-next custom-swiper-arrow">
+          <i data-feather="chevron-right"></i>
+        </div>
+      <!-- PAGINATION -->
+      <div class="swiper-pagination !bottom-4 !text-white"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Contact -->
+<section id="contact" class="h-screen px-6 text-center bg-gradient-to-br from-purple-300 to-purple-400 flex items-center justify-center text-purple-900">
+  <div class="max-w-xl glass p-8 rounded-xl shadow-xl w-full bg-white/20 border border-white/30 backdrop-blur" data-aos="fade-up">
+    <h2 class="text-2xl font-bold text-center mb-6">Hubungi Saya</h2>
+  <form onsubmit="sendMail(event)" class="space-y-4 item-center">
+    <input type="text" id="nama" placeholder="Nama" class="w-full text-center p-3 rounded bg-purple-900 text-white border border-purple-700 focus:outline-none" required>
+    <input type="email" id="email" placeholder="Email" class="w-full text-center p-3 rounded bg-purple-900 text-white border border-purple-700 focus:outline-none" required>
+    <textarea id="pesan" placeholder="Pesan" rows="5" class="w-full text-center p-3 rounded bg-purple-900 text-white border border-purple-700 focus:outline-none" required></textarea>
+    <button type="submit" class="w-full text-center bg-white text-purple-800 font-semibold py-3 rounded hover:bg-gray-200 transition">Kirim Pesan</button>
+  </form>
+    </div>
+</section>
+
+<!-- Footer Proyek List -->
+<section class="px-6 py-12 bg-black text-white border-t border-purple-800 text-center">
+  <div class="max-w-6xl mx-auto text-center">
+    <h3 class="text-2xl font-bold mb-6 text-purple-300">Daftar Proyek Lengkap</h3>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 text-sm justify-center">
+      <li>🔹 Online Shop Website – Website responsif untuk jualan online</li>
+      <li>🔹 Data Scrapper – Scrape data dari marketplace via Python</li>
+      <li>🔹 Portfolio Modern – Portofolio profesional one-page</li>
+      <li>🔹 Landing Page UMKM – Desain promosi bisnis lokal</li>
+      <li>🔹 Dashboard Admin – Panel login dan manajemen CRUD</li>
+      <li>🔹 Website Profil – Informasi usaha/tokoh dengan desain elegan</li>
+    </ul>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-gray-400 text-sm bg-purple-950 border-t border-purple-800">
+    © 2025 Jeffri Tan Apserda
+  </footer>
+
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 30 },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.07, random: true },
+        size: { value: 70, random: true },
+        move: { enable: true, speed: 0.6, out_mode: "out" },
+        line_linked: { enable: false }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: false }, onclick: { enable: false }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+
+  <!-- Swiper + Toggle Logic -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+  const swiper = new Swiper(".mySwiper", {
+    loop: false,
+    grabCursor: true,
+    centeredSlides: false,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 1,
+        spaceBetween: 40,
+      },
+      1024: {
+        slidesPerView: 1,
+        spaceBetween: 50,
+      },
+    },
+  });
+
+
+    function toggleDetail(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    }
+  </script>
+
+  <!-- Navbar color change on scroll -->
+  <script>
+  function toggleDetail(button, id) {
+    const detail = document.getElementById(id);
+    const isOpen = detail.classList.contains('show');
+    detail.classList.toggle('show');
+    button.innerText = isOpen ? "Lihat Detail" : "Tutup Detail";
+  }
+  window.addEventListener("scroll", () => {
+    const navbar = document.getElementById("navbar");
+    const projectSection = document.getElementById("projects");
+    const rect = projectSection.getBoundingClientRect();
+    const isInView = rect.top <= 80 && rect.bottom >= 80;
+
+    if (isInView) {
+      navbar.classList.add("navbar-dark");
+      navbar.classList.remove("navbar-default");
+    } else {
+      navbar.classList.remove("navbar-dark");
+      navbar.classList.add("navbar-default");
+    }
+  });
+  </script>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true, // hanya animasi sekali
+    });
+  </script>
+
+  <!-- Mailto Script -->
+  <script>
+    function sendMail(event) {
+      event.preventDefault();
+      const nama = document.getElementById('nama').value;
+      const email = document.getElementById('email').value;
+      const pesan = document.getElementById('pesan').value;
+
+      const subject = encodeURIComponent("Pesan dari Website Portofolio");
+      const body = encodeURIComponent(`Nama: ${nama}\nEmail: ${email}\n\n${pesan}`);
+
+      const mailtoLink = `mailto:tapserda.business@email.com?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+    }
+  </script>
+
+  <!-- Feather Icons -->
+  <script>
+    feather.replace();
+  </script>
+
+
+</body>
+</html>
