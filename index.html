@@ -1,361 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jeffri Tan Apserda</title>
-  <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans&display=swap" rel="stylesheet">
+  <title>Jeffri Tan Apserda | Portofolio</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <script src="https://unpkg.com/feather-icons"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-<style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #0f172a;
+    }
     html {
       scroll-snap-type: y mandatory;
       scroll-behavior: smooth;
     }
     section {
       scroll-snap-align: start;
+      min-height: 100vh;
     }
     body {
-      font-family: 'TikTok Sans', sans-serif;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark);
+      color: white;
     }
 
-    /* Background gradient */
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    /* Modern Glassmorphism */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     }
 
-    /* Navbar */
-    .project-box {
-      background: #0a0a0a;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
-      transition: all 0.3s ease;
+    /* Glow Effect */
+    .glow-text {
+      text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
     }
 
-    .project-box:hover {
-      box-shadow: 0 0 50px rgba(255, 255, 255, 0.12);
-      transform: translateY(-4px);
-    }
-
-    /* Animasi buka/tutup detail */
+    /* Expandable logic */
     .expandable {
       max-height: 0;
       opacity: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.4s ease;
+      transition: all 0.5s ease;
     }
-
     .expandable.show {
-      max-height: 35vh;
+      max-height: 500px;
       opacity: 1;
-      overflow-y: auto;
+      padding-top: 1.5rem;
     }
 
-    /* Transition navbar scroll mode */
-    .navbar-default {
-      background-color: rgba(51, 11, 102, 0.85);
-      border-bottom: 1px solid #4b0082;
-    }
-    .navbar-dark {
-      background-color: #000;
-      border-bottom: 1px solid white;
-    }
-    /* Hapus gaya default panah bawaan */
-    .swiper-button-prev::after,
-    .swiper-button-next::after {
-      display: none;
-    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #4c1d95; border-radius: 10px; }
 
-    /* Feather icon container */
-    .custom-swiper-arrow {
-      width: 30px;
-      height: 30px;
-      background: transparent;
-      color: purple;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      top: 50%;
-      transform: translateY(-50%);
-      position: absolute;
-      z-index: 10;
-      cursor: pointer;
-      opacity: 0.6;
-      transition: opacity 0.3s ease;
-    }
-
-    .custom-swiper-arrow:hover {
-      opacity: 1;
-    }
-
-    /* Posisi kiri dan kanan */
-    .swiper-button-prev {
-      left: -10px;
-    }
-
-    .swiper-button-next {
-      right: -10px;
-    }
-
-    /* Feather icon style */
-    .custom-swiper-arrow i {
-      width: 20px;
-      height: 20px;
-      stroke-width: 2.5;
-    }
-
-    /* Scrollbar styling for project details */
-    #detail1,
-    #detail2,
-    #detail3 {
-      scrollbar-width: thin;
-      scrollbar-color: #a78bfa transparent;
-    }
-
+    .swiper-pagination-bullet { background: white !important; opacity: 0.5; }
+    .swiper-pagination-bullet-active { background: var(--primary) !important; opacity: 1; }
   </style>
 </head>
 
-<body class="bg-gradient-to-br from-purple-900 to-black text-white overflow-x-hidden">
-  <!-- Navbar -->
-<nav id="navbar" class="navbar-default fixed top-0 left-0 w-full z-50 py-4 px-6 flex items-center justify-between backdrop-blur transition-all duration-500 text-center">
-  <div class="text-2xl font-bold tracking-wide text-purple-500">TAPS</div>
-  <a href="#contact" class="bg-white text-purple-500 font-semibold px-5 py-2 rounded-full hover:bg-gray-200 transition-all duration-300">Contact Me</a>
-</nav>
+<body class="overflow-x-hidden">
 
-  <!-- Section: Intro -->
-   <section class="relative h-screen text-center flex items-center justify-center px-6 pt-16 text-purple-800">
-    <div id="particles-js" class="absolute inset-0 -z-10"></div>
-    <div class="max-w-6xl w-full glass rounded-xl p-10 grid grid-cols-1 md:grid-cols-2 gap-10 shadow-lg">
-      <div class="flex justify-center items-center text-center">
-        <img src="user.png" alt="Foto Jeffri" class="w-48 h-48 rounded-full object-cover border-4 border-purple-800 shadow-xl">
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 py-5 px-10 flex items-center justify-between transition-all duration-500">
+    <div class="text-2xl font-black tracking-tighter text-white glow-text">TAPS<span class="text-purple-500">.</span></div>
+    <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-gray-400">
+        <a href="#projects" class="hover:text-white transition">Projects</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+    </div>
+    <a href="#contact" class="bg-purple-600 text-white text-xs font-bold px-6 py-2.5 rounded-full hover:bg-purple-500 hover:scale-105 transition-all shadow-lg shadow-purple-900/20">
+      GET IN TOUCH
+    </a>
+  </nav>
+
+  <section class="relative flex items-center justify-center px-6 overflow-hidden">
+    <div id="particles-js" class="absolute inset-0 z-0"></div>
+    
+    <div class="max-w-5xl w-full glass-card rounded-3xl p-8 md:p-16 z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center" data-aos="zoom-in">
+      <div class="relative group mx-auto">
+        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+        <img src="user.png" alt="Jeffri" class="relative w-56 h-56 rounded-full object-cover border-2 border-white/10 shadow-2xl">
       </div>
-      <div class="flex flex-col justify-center text-center">
-        <h1 class="text-4xl font-bold mb-2">JEFFRI TAN APSERDA</h1>
-        <h2 class="text-xl text-purple-300 mb-6">Web Developer | UI Designer</h2>
-        <p class="text-purple-300 mb-4">Saya adalah seorang web developer dan UI designer yang membangun website modern, responsif, dan user-friendly.</p>
-        <div>
-          <h3 class="text-lg font-semibold mb-1">Keahlian & Tools:</h3>
-          <ul class="list-disc list-inside text-purple-300 space-y-1">
-            <li>HTML, CSS, JavaScript, PHP, Python</li>
-            <li>Tailwind CSS, Bootstrap</li>
-            <li>React.js, Node.js, Laravel</li>
-            <li>Git & GitHub, Figma, Notion</li>
-          </ul>
+      
+      <div class="text-center md:text-left">
+        <h1 class="text-5xl font-black mb-4 tracking-tight leading-tight">
+          JEFFRI TAN <br><span class="text-purple-500">APSERDA</span>
+        </h1>
+        <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+          Crafting digital experiences through <span class="text-white font-semibold">Clean Code</span> and <span class="text-white font-semibold">User-Centric Design</span>.
+        </p>
+        
+        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+          <span class="px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold border border-white/10">React.js</span>
+          <span class="px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold border border-white/10">Tailwind</span>
+          <span class="px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold border border-white/10">Python</span>
+          <span class="px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold border border-white/10">Laravel</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section: Projects -->
-<section id="projects" class="h-screen text-center snap-start px-6 py-24 bg-gradient-to-br from-black to-gray-900 text-white flex items-center">
-  <div class="max-w-5xl mx-auto w-full">
-    <h2 class="text-3xl font-bold text-center mb-10">Projek Terbaru</h2>
-
-    <div class="swiper mySwiper relative">
-      <div class="swiper-wrapper">
-        <!-- Slide 1 -->
-        <div class="swiper-slide">
-          <div class="project-box text-center">
-            <h3 class="text-xl font-semibold mb-2">Online Shop Website</h3>
-            <p class="text-gray-400 text-sm mb-4">Website responsif untuk berjualan produk.</p>
-            <button onclick="toggleDetail(this, 'detail1')" class="text-sm text-purple-300 underline hover:text-white">Lihat Detail</button>
-            <div id="detail1" class="expandable mt-4">
-              <img src="project1.png" alt="Landing Page" class="w-full h-48 object-cover rounded-lg border border-purple-700 mb-2">
-              <p class="text-gray-500 text-sm">Dibuat menggunakan CMS populer Wordpress dan Shopify, mengembangkan desain minimalis dan modern.</p>
-            </div>
-          </div>
-        </div>
-        <!-- Slide 2 -->
-        <div class="swiper-slide">
-          <div class="project-box">
-            <h3 class="text-xl font-semibold mb-2">Data Scrapper</h3>
-            <p class="text-gray-400 text-sm mb-4">Mengumpulkan data-data menggunakan Python.</p>
-            <button onclick="toggleDetail(this, 'detail2')" class="text-sm text-purple-300 underline hover:text-white">Lihat Detail</button>
-            <div id="detail2" class="expandable mt-4">
-              <img src="project2.png" alt="Dashboard" class="w-full h-48 object-cover rounded-lg border border-purple-700 mb-2">
-              <p class="text-gray-500 text-sm">Mengumpulkan data dari marketplace online menggunakan Python otomatis.</p>
-            </div>
-          </div>
-        </div>
-        <!-- Slide 3 -->
-        <div class="swiper-slide">
-          <div class="project-box">
-            <h3 class="text-xl font-semibold mb-2">Portfolio Modern</h3>
-            <p class="text-gray-400 text-sm mb-4">Portfolio one-page profesional.</p>
-            <button onclick="toggleDetail(this, 'detail3')" class="text-sm text-purple-300 underline hover:text-white">Lihat Detail</button>
-            <div id="detail3" class="expandable mt-4">
-              <img src="project3.png" alt="Portfolio" class="w-full h-48 object-cover rounded-lg border border-purple-700 mb-2">
-              <p class="text-gray-500 text-sm">Desain clean dengan JavaScript dan Tailwind, menampilkan animasi scroll dan integrasi kontak via email.</p>
-            </div>
-          </div>
-        </div>
+  <section id="projects" class="relative flex items-center py-20 bg-[#0a0a0a]">
+    <div class="max-w-4xl mx-auto w-full px-6">
+      <div class="mb-12 text-center" data-aos="fade-up">
+        <h2 class="text-3xl font-black mb-2 uppercase tracking-tighter">Selected Work</h2>
+        <div class="h-1 w-20 bg-purple-600 mx-auto"></div>
       </div>
-        <!-- Custom Navigation Arrows -->
-        <div class="swiper-button-prev custom-swiper-arrow">
-          <i data-feather="chevron-left"></i>
+
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="glass-card p-8 rounded-2xl">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h3 class="text-2xl font-bold italic">Online Shop Website</h3>
+                    <p class="text-purple-400 text-xs font-bold uppercase tracking-widest mt-1">E-Commerce Solution</p>
+                </div>
+                <i data-feather="shopping-bag" class="text-purple-500"></i>
+              </div>
+              <p class="text-gray-400 mb-6 text-sm">Website responsif dengan integrasi Shopify/Wordpress untuk performa jualan maksimal.</p>
+              <button onclick="toggleDetail(this, 'detail1')" class="bg-white/10 hover:bg-white/20 text-white text-xs px-6 py-2 rounded-lg transition-all font-bold uppercase">View Case Study</button>
+              
+              <div id="detail1" class="expandable">
+                <img src="project1.png" class="w-full h-48 object-cover rounded-xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="glass-card p-8 rounded-2xl">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h3 class="text-2xl font-bold italic">Data Scrapper</h3>
+                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mt-1">Python Automation</p>
+                </div>
+                <i data-feather="database" class="text-blue-500"></i>
+              </div>
+              <p class="text-gray-400 mb-6 text-sm">Otomasi pengambilan data marketplace secara real-time menggunakan Selenium/BeautifulSoup.</p>
+              <button onclick="toggleDetail(this, 'detail2')" class="bg-white/10 hover:bg-white/20 text-white text-xs px-6 py-2 rounded-lg transition-all font-bold uppercase">View Case Study</button>
+              
+              <div id="detail2" class="expandable">
+                <img src="project2.png" class="w-full h-48 object-cover rounded-xl border border-white/10">
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="swiper-button-next custom-swiper-arrow">
-          <i data-feather="chevron-right"></i>
-        </div>
-      <!-- PAGINATION -->
-      <div class="swiper-pagination !bottom-4 !text-white"></div>
+        <div class="swiper-pagination !-bottom-10"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Section: Contact -->
-<section id="contact" class="h-screen px-6 text-center bg-gradient-to-br from-purple-300 to-purple-400 flex items-center justify-center text-purple-900">
-  <div class="max-w-xl glass p-8 rounded-xl shadow-xl w-full bg-white/20 border border-white/30 backdrop-blur" data-aos="fade-up">
-    <h2 class="text-2xl font-bold text-center mb-6">Hubungi Saya</h2>
-  <form onsubmit="sendMail(event)" class="space-y-4 item-center">
-    <input type="text" id="nama" placeholder="Nama" class="w-full text-center p-3 rounded bg-purple-900 text-white border border-purple-700 focus:outline-none" required>
-    <input type="email" id="email" placeholder="Email" class="w-full text-center p-3 rounded bg-purple-900 text-white border border-purple-700 focus:outline-none" required>
-    <textarea id="pesan" placeholder="Pesan" rows="5" class="w-full text-center p-3 rounded bg-purple-900 text-white border border-purple-700 focus:outline-none" required></textarea>
-    <button type="submit" class="w-full text-center bg-white text-purple-800 font-semibold py-3 rounded hover:bg-gray-200 transition">Kirim Pesan</button>
-  </form>
+  <section id="contact" class="flex items-center justify-center bg-purple-600">
+    <div class="max-w-lg w-full px-6" data-aos="fade-up">
+      <div class="glass-card p-10 rounded-3xl bg-white/10 border-white/20 backdrop-blur-2xl">
+        <h2 class="text-3xl font-black mb-8 text-center uppercase italic">Start a Conversation</h2>
+        <form onsubmit="sendMail(event)" class="space-y-4">
+          <input type="text" id="nama" placeholder="Your Name" class="w-full p-4 rounded-xl bg-black/20 border border-white/10 focus:border-white focus:outline-none transition-all placeholder:text-white/30 text-sm" required>
+          <input type="email" id="email" placeholder="Email Address" class="w-full p-4 rounded-xl bg-black/20 border border-white/10 focus:border-white focus:outline-none transition-all placeholder:text-white/30 text-sm" required>
+          <textarea id="pesan" placeholder="Tell me about your project..." rows="4" class="w-full p-4 rounded-xl bg-black/20 border border-white/10 focus:border-white focus:outline-none transition-all placeholder:text-white/30 text-sm" required></textarea>
+          <button type="submit" class="w-full bg-white text-purple-600 font-black py-4 rounded-xl hover:bg-gray-100 transition-all uppercase tracking-widest text-xs shadow-xl">Send Message</button>
+        </form>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- Footer Proyek List -->
-<section class="px-6 py-12 bg-black text-white border-t border-purple-800 text-center">
-  <div class="max-w-6xl mx-auto text-center">
-    <h3 class="text-2xl font-bold mb-6 text-purple-300">Daftar Proyek Lengkap</h3>
-    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 text-sm justify-center">
-      <li>🔹 Online Shop Website – Website responsif untuk jualan online</li>
-      <li>🔹 Data Scrapper – Scrape data dari marketplace via Python</li>
-      <li>🔹 Portfolio Modern – Portofolio profesional one-page</li>
-      <li>🔹 Landing Page UMKM – Desain promosi bisnis lokal</li>
-      <li>🔹 Dashboard Admin – Panel login dan manajemen CRUD</li>
-      <li>🔹 Website Profil – Informasi usaha/tokoh dengan desain elegan</li>
-    </ul>
-  </div>
-</section>
-
-
-  <!-- Footer -->
-  <footer class="text-center py-6 text-gray-400 text-sm bg-purple-950 border-t border-purple-800">
-    © 2025 Jeffri Tan Apserda
+  <footer class="py-12 bg-[#050505] text-center border-t border-white/5">
+    <div class="flex justify-center gap-6 mb-6">
+        <a href="#" class="text-gray-500 hover:text-white transition"><i data-feather="github"></i></a>
+        <a href="#" class="text-gray-500 hover:text-white transition"><i data-feather="instagram"></i></a>
+        <a href="#" class="text-gray-500 hover:text-white transition"><i data-feather="linkedin"></i></a>
+    </div>
+    <p class="text-gray-600 text-[10px] tracking-[0.5em] uppercase font-bold">
+      &copy; 2026 Jeffri Tan Apserda • All Rights Reserved
+    </p>
   </footer>
 
-  <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <script>
+    AOS.init({ duration: 800, once: true });
+    feather.replace();
+
+    // Swiper Config
+    const swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+      pagination: { el: ".swiper-pagination", clickable: true },
+    });
+
+    // Toggle Detail
+    function toggleDetail(button, id) {
+      const detail = document.getElementById(id);
+      const isOpen = detail.classList.contains('show');
+      detail.classList.toggle('show');
+      button.innerText = isOpen ? "View Case Study" : "Close Detail";
+    }
+
+    // Particles
     particlesJS("particles-js", {
       particles: {
-        number: { value: 30 },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.07, random: true },
-        size: { value: 70, random: true },
-        move: { enable: true, speed: 0.6, out_mode: "out" },
-        line_linked: { enable: false }
-      },
-      interactivity: {
-        events: {
-          onhover: { enable: false }, onclick: { enable: false }
-        }
-      },
-      retina_detect: true
+        number: { value: 40 },
+        color: { value: "#8b5cf6" },
+        opacity: { value: 0.2 },
+        size: { value: 3 },
+        line_linked: { enable: true, distance: 150, color: "#8b5cf6", opacity: 0.1, width: 1 },
+        move: { enable: true, speed: 1 }
+      }
     });
-  </script>
 
-  <!-- Swiper + Toggle Logic -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-  const swiper = new Swiper(".mySwiper", {
-    loop: false,
-    grabCursor: true,
-    centeredSlides: false,
-    slidesPerView: 1,
-    spaceBetween: 30,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 1,
-        spaceBetween: 40,
-      },
-      1024: {
-        slidesPerView: 1,
-        spaceBetween: 50,
-      },
-    },
-  });
-
-
-    function toggleDetail(id) {
-      const el = document.getElementById(id);
-      el.classList.toggle('hidden');
-    }
-  </script>
-
-  <!-- Navbar color change on scroll -->
-  <script>
-  function toggleDetail(button, id) {
-    const detail = document.getElementById(id);
-    const isOpen = detail.classList.contains('show');
-    detail.classList.toggle('show');
-    button.innerText = isOpen ? "Lihat Detail" : "Tutup Detail";
-  }
-  window.addEventListener("scroll", () => {
-    const navbar = document.getElementById("navbar");
-    const projectSection = document.getElementById("projects");
-    const rect = projectSection.getBoundingClientRect();
-    const isInView = rect.top <= 80 && rect.bottom >= 80;
-
-    if (isInView) {
-      navbar.classList.add("navbar-dark");
-      navbar.classList.remove("navbar-default");
-    } else {
-      navbar.classList.remove("navbar-dark");
-      navbar.classList.add("navbar-default");
-    }
-  });
-  </script>
-
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      once: true, // hanya animasi sekali
+    // Navbar Scroll Effect
+    window.addEventListener("scroll", () => {
+      const nav = document.getElementById("navbar");
+      if (window.scrollY > 50) {
+        nav.classList.add("bg-dark/80", "backdrop-blur-md", "py-3", "border-b", "border-white/5");
+        nav.style.backgroundColor = "rgba(15, 23, 42, 0.9)";
+      } else {
+        nav.classList.remove("bg-dark/80", "backdrop-blur-md", "py-3", "border-b", "border-white/5");
+        nav.style.backgroundColor = "transparent";
+      }
     });
-  </script>
 
-  <!-- Mailto Script -->
-  <script>
-    function sendMail(event) {
-      event.preventDefault();
+    // Mail Logic
+    function sendMail(e) {
+      e.preventDefault();
       const nama = document.getElementById('nama').value;
       const email = document.getElementById('email').value;
       const pesan = document.getElementById('pesan').value;
-
-      const subject = encodeURIComponent("Pesan dari Website Portofolio");
-      const body = encodeURIComponent(`Nama: ${nama}\nEmail: ${email}\n\n${pesan}`);
-
-      const mailtoLink = `mailto:tapserda.business@email.com?subject=${subject}&body=${body}`;
-      window.location.href = mailtoLink;
+      window.location.href = `mailto:tapserda.business@email.com?subject=Project Inquiry from ${nama}&body=${pesan} (${email})`;
     }
   </script>
-
-  <!-- Feather Icons -->
-  <script>
-    feather.replace();
-  </script>
-
-
 </body>
 </html>
