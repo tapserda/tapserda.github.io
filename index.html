@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jeffri Tan Apserda | Portofolio</title>
+  <title>Jeffri Tan Apserda | Portfolio</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,136 +12,145 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <style>
-    :root { --primary: #8b5cf6; --dark: #0a0a0a; }
+    :root { --primary: #8b5cf6; --dark: #050505; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: white; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: white; overflow-x: hidden; }
 
+    /* Glass Effect */
     .glass-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(12px);
+      background: rgba(20, 20, 20, 0.8);
+      backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .project-grid-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-5px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
 
-    /* Memperbaiki tinggi Swiper agar tidak tumpang tindih */
-    .swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
-    .swiper-slide { height: auto; }
+    /* Memperbaiki Swiper agar tidak tumpang tindih teksnya */
+    .swiper { width: 100%; max-width: 400px; height: 500px; padding-top: 20px; }
+    .swiper-slide { 
+      border-radius: 24px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between;
+    }
 
-    .expandable { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease; }
-    .expandable.show { max-height: 500px; opacity: 1; margin-top: 1rem; }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s;
+    }
+    .btn-outline:hover {
+      background: white;
+      color: black;
+      border-color: white;
+    }
   </style>
 </head>
 <body>
 
-  <nav class="fixed top-0 w-full z-50 py-5 px-10 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/5">
-    <div class="text-xl font-black italic tracking-tighter">TAPS<span class="text-purple-500">.</span></div>
-    <a href="#contact" class="bg-purple-600 px-5 py-2 rounded-full text-xs font-bold hover:bg-purple-500 transition">CONTACT ME</a>
+  <nav class="fixed top-0 w-full z-50 py-6 px-8 flex justify-between items-center bg-black/20 backdrop-blur-lg">
+    <div class="text-2xl font-black italic tracking-tighter">TAPS<span class="text-purple-500">.</span></div>
+    <a href="#contact" class="text-xs font-bold tracking-widest border-b border-purple-500 pb-1 hover:text-purple-400 transition">HIRE ME</a>
   </nav>
 
-  <section class="min-h-screen flex items-center justify-center pt-20 px-6">
-    <div class="max-w-5xl w-full glass-card rounded-3xl p-10 grid md:grid-cols-2 gap-10 items-center">
-      <div class="text-center md:text-left">
-        <h1 class="text-5xl font-black leading-tight mb-4 uppercase italic">Jeffri Tan<br><span class="text-purple-500">Apserda</span></h1>
-        <p class="text-gray-400 mb-6">Web Developer & Automation Expert. Fokus pada pengembangan landing page performa tinggi dan skrip otomasi Python.</p>
-        <div class="flex gap-3 justify-center md:justify-start">
-            <div class="bg-white/5 p-2 rounded-lg border border-white/10"><i data-feather="code" class="w-4 h-4 text-purple-400"></i></div>
-            <div class="bg-white/5 p-2 rounded-lg border border-white/10"><i data-feather="database" class="w-4 h-4 text-blue-400"></i></div>
-            <div class="bg-white/5 p-2 rounded-lg border border-white/10"><i data-feather="terminal" class="w-4 h-4 text-green-400"></i></div>
+  <section class="min-h-screen flex flex-col items-center justify-center text-center px-6">
+    <div data-aos="fade-down">
+        <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter mb-4">JEFFRI TAN</h1>
+        <p class="text-gray-500 tracking-[0.5em] uppercase text-xs mb-10">Web Developer & Security Enthusiast</p>
+    </div>
+    
+    <div class="swiper mySwiper" data-aos="zoom-in" data-aos-delay="200">
+      <div class="swiper-wrapper">
+        
+        <div class="swiper-slide glass-card p-8">
+          <div>
+            <div class="flex justify-between items-center mb-6">
+                <i data-feather="terminal" class="text-orange-500"></i>
+                <span class="text-[10px] font-bold bg-orange-500/20 text-orange-500 px-2 py-1 rounded">PYTHON</span>
+            </div>
+            <h3 class="text-2xl font-black italic mb-2">Shopee Scraper Toolkit</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">Automated toolkit for scraping Shopee product details and shop lists using Selenium.</p>
+          </div>
+          <a href="https://github.com/tapserda/shopee-scraper-toolkit" target="_blank" class="btn-outline text-[10px] font-bold py-3 rounded-xl text-center">VIEW REPOSITORY</a>
         </div>
-      </div>
-      <div class="flex justify-center">
-        <div class="w-64 h-64 rounded-2xl rotate-3 border-2 border-purple-500 overflow-hidden shadow-[0_0_50px_rgba(139,92,246,0.2)]">
-            <img src="user.png" class="w-full h-full object-cover -rotate-3 hover:scale-110 transition duration-700">
+
+        <div class="swiper-slide glass-card p-8">
+          <div>
+            <div class="flex justify-between items-center mb-6">
+                <i data-feather="server" class="text-green-500"></i>
+                <span class="text-[10px] font-bold bg-green-500/20 text-green-500 px-2 py-1 rounded">DJANGO 5.2</span>
+            </div>
+            <h3 class="text-2xl font-black italic mb-2">Django Boilerplate</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">Clean MVT architecture with SQLite integration for rapid web development.</p>
+          </div>
+          <a href="https://github.com/tapserda/django-basic" target="_blank" class="btn-outline text-[10px] font-bold py-3 rounded-xl text-center">VIEW REPOSITORY</a>
         </div>
+
+        <div class="swiper-slide glass-card p-8">
+          <div>
+            <div class="flex justify-between items-center mb-6">
+                <i data-feather="shield" class="text-blue-500"></i>
+                <span class="text-[10px] font-bold bg-blue-500/20 text-blue-500 px-2 py-1 rounded">CYBERSEC</span>
+            </div>
+            <h3 class="text-2xl font-black italic mb-2">Simple Stegano</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">LSB Steganography tool with GUI for hiding secret messages inside image files.</p>
+          </div>
+          <a href="https://github.com/tapserda/simple-stegano" target="_blank" class="btn-outline text-[10px] font-bold py-3 rounded-xl text-center">VIEW REPOSITORY</a>
+        </div>
+
+        <div class="swiper-slide glass-card p-8">
+          <div>
+            <div class="flex justify-between items-center mb-6">
+                <i data-feather="search" class="text-purple-500"></i>
+                <span class="text-[10px] font-bold bg-purple-500/20 text-purple-500 px-2 py-1 rounded">NETWORKING</span>
+            </div>
+            <h3 class="text-2xl font-black italic mb-2">Multi-Port Scanner</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">Efficient TCP port discovery tool with timeout optimization for network auditing.</p>
+          </div>
+          <a href="https://github.com/tapserda/python-port-scanner" target="_blank" class="btn-outline text-[10px] font-bold py-3 rounded-xl text-center">VIEW REPOSITORY</a>
+        </div>
+
       </div>
+      <div class="swiper-pagination !-bottom-2"></div>
     </div>
   </section>
 
-  <section id="projects" class="py-20 bg-black/30">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-2xl font-black italic mb-10 text-center uppercase tracking-widest">Featured Work</h2>
-      
-      <div class="swiper mainSwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="glass-card p-8 rounded-2xl">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-2xl font-bold">Online Shop Website</h3>
-                <span class="bg-purple-500/20 text-purple-400 text-[10px] px-2 py-1 rounded font-bold uppercase">E-Commerce</span>
-              </div>
-              <p class="text-gray-400 text-sm mb-6">Solusi toko online responsif dengan optimasi konversi.</p>
-              <button onclick="toggleDetail(this, 'd1')" class="text-xs font-bold text-purple-400 hover:text-white transition">VIEW CASE STUDY</button>
-              <div id="d1" class="expandable"><img src="project1.png" class="rounded-xl w-full h-40 object-cover border border-white/10"></div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="glass-card p-8 rounded-2xl">
-              <div class="flex justify-between items-start mb-4">
-                <h3 class="text-2xl font-bold">Data Scrapper</h3>
-                <span class="bg-blue-500/20 text-blue-400 text-[10px] px-2 py-1 rounded font-bold uppercase">Python</span>
-              </div>
-              <p class="text-gray-400 text-sm mb-6">Automasi pengambilan data marketplace menggunakan Python Selenium.</p>
-              <button onclick="toggleDetail(this, 'd2')" class="text-xs font-bold text-blue-400 hover:text-white transition">VIEW CASE STUDY</button>
-              <div id="d2" class="expandable"><img src="project2.png" class="rounded-xl w-full h-40 object-cover border border-white/10"></div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 px-6">
+  <section class="py-20 bg-black/50 px-6">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-2xl font-black italic mb-10 text-center uppercase tracking-widest text-orange-500">Shopee Affiliate Collection</h2>
-      
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div class="glass-card p-4 rounded-2xl project-grid-card">
-          <img src="https://down-id.img.susercontent.com/file/id-11134207-7rasm-m0u97zreuv7if3.webp" class="rounded-xl aspect-square object-cover mb-4">
-          <h4 class="text-sm font-bold truncate">Kaos Luffy Kecil</h4>
-          <p class="text-[10px] text-gray-500 mb-3 uppercase">Shopee Affiliate</p>
-          <a href="https://s.shopee.co.id/BLclsYHYN" class="block text-center bg-orange-500 text-white text-[10px] font-bold py-2 rounded-lg">BELI SEKARANG</a>
+        <h2 class="text-center text-2xl font-black italic mb-12 tracking-tighter uppercase">Affiliate Highlights</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="https://github.com/tapserda/affiliate-web" target="_blank" class="glass-card p-6 rounded-2xl hover:border-purple-500 transition group">
+                <i data-feather="layout" class="mb-4 text-purple-500"></i>
+                <h4 class="font-bold text-sm italic group-hover:text-purple-400">Affiliate Landing Page</h4>
+                <p class="text-[10px] text-gray-500 mt-2">React JSX + Tailwind implementation for product showcase.</p>
+            </a>
+            <a href="https://github.com/tapserda/ip-mac-port-scanner" target="_blank" class="glass-card p-6 rounded-2xl hover:border-blue-500 transition group">
+                <i data-feather="cpu" class="mb-4 text-blue-500"></i>
+                <h4 class="font-bold text-sm italic group-hover:text-blue-400">Nmap Batch Toolkit</h4>
+                <p class="text-[10px] text-gray-500 mt-2">Automated Windows Batch script for network discovery.</p>
+            </a>
+            <a href="https://github.com/tapserda/sllc-python" target="_blank" class="glass-card p-6 rounded-2xl hover:border-green-500 transition group">
+                <i data-feather="book-open" class="mb-4 text-green-500"></i>
+                <h4 class="font-bold text-sm italic group-hover:text-green-400">Book SLLC System</h4>
+                <p class="text-[10px] text-gray-500 mt-2">Data structure implementation for library management.</p>
+            </a>
+            <a href="https://github.com/tapserda/cpp-to-bash" target="_blank" class="glass-card p-6 rounded-2xl hover:border-red-500 transition group">
+                <i data-feather="settings" class="mb-4 text-red-500"></i>
+                <h4 class="font-bold text-sm italic group-hover:text-red-400">Makefile Automator</h4>
+                <p class="text-[10px] text-gray-500 mt-2">Interactive script to automate C++ compilation.</p>
+            </a>
         </div>
-        <div class="glass-card p-4 rounded-2xl project-grid-card">
-          <img src="https://down-id.img.susercontent.com/file/sg-11134201-825ak-mfxke83d9p1qb1.webp" class="rounded-xl aspect-square object-cover mb-4">
-          <h4 class="text-sm font-bold truncate">Kaos Shin-Chan</h4>
-          <p class="text-[10px] text-gray-500 mb-3 uppercase">Shopee Affiliate</p>
-          <a href="https://s.shopee.co.id/gHtqj7uz5" class="block text-center bg-orange-500 text-white text-[10px] font-bold py-2 rounded-lg">BELI SEKARANG</a>
-        </div>
-        <div class="glass-card p-4 rounded-2xl project-grid-card">
-          <img src="https://down-id.img.susercontent.com/file/id-11134207-7r98y-lx6lgmalnwv280.webp" class="rounded-xl aspect-square object-cover mb-4">
-          <h4 class="text-sm font-bold truncate">Jaket Traktop Windbreaker</h4>
-          <p class="text-[10px] text-gray-500 mb-3 uppercase">Shopee Affiliate</p>
-          <a href="https://s.shopee.co.id/5AkKzjp6dY" class="block text-center bg-orange-500 text-white text-[10px] font-bold py-2 rounded-lg">BELI SEKARANG</a>
-        </div>
-        <div class="glass-card p-4 rounded-2xl project-grid-card">
-          <img src="https://down-id.img.susercontent.com/file/sg-11134201-8258y-mg64ethfzmkv0c.webp" class="rounded-xl aspect-square object-cover mb-4">
-          <h4 class="text-sm font-bold truncate">Jaket Fujin Nylon</h4>
-          <p class="text-[10px] text-gray-500 mb-3 uppercase">Shopee Affiliate</p>
-          <a href="https://s.shopee.co.id/3qExbdX0yM" class="block text-center bg-orange-500 text-white text-[10px] font-bold py-2 rounded-lg">BELI SEKARANG</a>
-        </div>
-      </div>
     </div>
   </section>
 
-  <section id="contact" class="py-20 px-6 bg-purple-600">
-    <div class="max-w-xl mx-auto glass-card p-10 rounded-3xl text-center">
-      <h2 class="text-3xl font-black italic mb-6">LET'S WORK!</h2>
-      <form onsubmit="sendMail(event)" class="space-y-4">
-        <input type="text" id="nama" placeholder="Nama" class="w-full p-4 rounded-xl bg-black/20 border-white/10 text-white placeholder:text-white/50 text-sm outline-none" required>
-        <textarea id="pesan" placeholder="Pesan" rows="4" class="w-full p-4 rounded-xl bg-black/20 border-white/10 text-white placeholder:text-white/50 text-sm outline-none" required></textarea>
-        <button type="submit" class="w-full bg-white text-purple-600 font-bold py-4 rounded-xl shadow-xl hover:scale-105 transition">SEND MESSAGE</button>
-      </form>
+  <section id="contact" class="py-32 px-6 flex justify-center">
+    <div class="max-w-md w-full text-center">
+        <h2 class="text-4xl font-black italic mb-8">GET IN TOUCH</h2>
+        <p class="text-gray-500 text-sm mb-10 italic">"Building the future, one line of code at a time."</p>
+        <a href="mailto:tapserda.business@email.com" class="inline-block bg-white text-black font-bold px-10 py-4 rounded-full hover:invert transition uppercase tracking-widest text-xs">Send Email</a>
     </div>
   </section>
 
-  <footer class="py-10 text-center text-gray-600 text-[10px] tracking-[0.5em] uppercase font-bold">
-    &copy; 2026 Jeffri Tan Apserda
+  <footer class="py-10 text-center text-gray-700 text-[10px] font-bold tracking-[0.5em] uppercase">
+    &copy; 2026 JEFFRI TAN APSERDA • BUILT WITH PASSION
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -150,31 +159,19 @@
     AOS.init();
     feather.replace();
 
-    // Perbaikan Konfigurasi Swiper (Menghapus effect cards agar tidak tertimpa)
-    const swiper = new Swiper(".mainSwiper", {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      autoplay: { delay: 3000 },
-      pagination: { el: ".swiper-pagination", clickable: true },
-      breakpoints: {
-        768: { slidesPerView: 2 }
-      }
+    // Swiper dengan "Cards Effect" yang sudah diperbaiki jaraknya
+    const swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+      perSlideOffset: 8,
+      perSlideRotate: 2,
+      rotate: true,
+      slideShadows: true,
+      pagination: {
+        el: ".swiper-pagination",
+        dynamicBullets: true,
+      },
     });
-
-    function toggleDetail(btn, id) {
-      const el = document.getElementById(id);
-      const isShow = el.classList.contains('show');
-      el.classList.toggle('show');
-      btn.innerText = isShow ? "VIEW CASE STUDY" : "CLOSE DETAIL";
-    }
-
-    function sendMail(e) {
-      e.preventDefault();
-      const nama = document.getElementById('nama').value;
-      const pesan = document.getElementById('pesan').value;
-      window.location.href = `mailto:tapserda.business@email.com?subject=Inquiry from ${nama}&body=${pesan}`;
-    }
   </script>
 </body>
 </html>
