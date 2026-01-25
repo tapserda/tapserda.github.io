@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeffri Tan Apserda | Portfolio</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    :root { --primary: #8b5cf6; --dark: #050505; }
+    
+    /* Full Snap Scrolling Configuration */
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark);
+      color: white;
+      margin: 0;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;     /* Firefox */
+    }
+
+    body::-webkit-scrollbar { display: none; } /* Chrome, Safari and Opera */
+
+    section, footer {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .glass-card {
+      background: rgba(20, 20, 20, 0.75);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: border-color 0.3s ease;
+    }
+
+    .glass-card:hover { border-color: var(--primary); }
+
+    /* Swiper Deck Setup */
+    .swiper { width: 100%; max-width: 400px; height: 520px; }
+    .swiper-slide { 
+      border-radius: 28px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: space-between;
+      padding: 2.5rem;
+    }
+
+    .btn-git {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.03);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 14px;
+      border-radius: 14px;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+    .btn-git:hover { background: white; color: black; transform: scale(1.02); }
+
+    .nav-dot { width: 8px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 50%; }
+  </style>
+</head>
+<body>
+
+  <nav class="fixed top-0 w-full z-50 py-8 px-10 flex justify-between items-center pointer-events-none">
+    <div class="text-2xl font-black italic tracking-tighter pointer-events-auto">TAPS<span class="text-purple-500">.</span></div>
+    <div class="hidden md:flex gap-8 pointer-events-auto text-[10px] font-black tracking-[0.3em] uppercase opacity-50">
+      <a href="#profile" class="hover:opacity-100 transition">Identity</a>
+      <a href="#projects" class="hover:opacity-100 transition">Dev Stack</a>
+      <a href="#contact" class="hover:opacity-100 transition">Contact</a>
+    </div>
+  </nav>
+
+  <section id="profile" class="bg-[#050505]">
+    <div class="text-center" data-aos="fade-up" data-aos-duration="1200">
+      <div class="relative inline-block mb-10">
+        <div class="absolute -inset-6 bg-purple-600/10 rounded-full blur-3xl"></div>
+        <img src="user.png" alt="Jeffri Tan" class="relative w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border border-white/10 grayscale">
+      </div>
+      <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter uppercase mb-2">JEFFRI TAN</h1>
+      <p class="text-purple-500 tracking-[0.8em] uppercase text-[9px] font-bold">Systems & Web Developer</p>
+    </div>
+  </section>
+
+  <section id="projects" class="bg-[#080808]">
+    <div class="w-full flex flex-col items-center">
+      <div class="mb-10 text-center" data-aos="fade-up">
+        <h2 class="text-[10px] font-black tracking-[0.5em] uppercase text-gray-500">Selected Repositories</h2>
+      </div>
+      
+      <div class="swiper mySwiper" data-aos="zoom-in">
+        <div class="swiper-wrapper">
+          
+          <div class="swiper-slide glass-card">
+            <div>
+              <div class="flex justify-between items-center mb-10"><i data-feather="terminal" class="text-purple-500"></i><span class="text-[9px] font-black opacity-40">REPO / 01</span></div>
+              <h3 class="text-3xl font-black italic mb-4 leading-tight uppercase">Shopee Scraper Toolkit</h3>
+              <p class="text-gray-400 text-xs leading-relaxed">Advanced Python toolkit for automated marketplace data extraction using Selenium and specific detail scrapers.</p>
+            </div>
+            <a href="https://github.com/tapserda/shopee-scraper-toolkit" target="_blank" class="btn-git">EXPLORE CODE</a>
+          </div>
+
+          <div class="swiper-slide glass-card">
+            <div>
+              <div class="flex justify-between items-center mb-10"><i data-feather="server" class="text-blue-500"></i><span class="text-[9px] font-black opacity-40">REPO / 02</span></div>
+              <h3 class="text-3xl font-black italic mb-4 leading-tight uppercase">Django Boilerplate</h3>
+              <p class="text-gray-400 text-xs leading-relaxed">A refined Django 5.2 Hello World boilerplate featuring clean MVT architecture and SQLite integration.</p>
+            </div>
+            <a href="https://github.com/tapserda/django-basic" target="_blank" class="btn-git">EXPLORE CODE</a>
+          </div>
+
+          <div class="swiper-slide glass-card">
+            <div>
+              <div class="flex justify-between items-center mb-10"><i data-feather="shield" class="text-green-500"></i><span class="text-[9px] font-black opacity-40">REPO / 03</span></div>
+              <h3 class="text-3xl font-black italic mb-4 leading-tight uppercase">Simple Stegano</h3>
+              <p class="text-gray-400 text-xs leading-relaxed">User-friendly LSB Steganography tool with GUI File Picker to hide secret messages inside images safely.</p>
+            </div>
+            <a href="https://github.com/tapserda/simple-stegano" target="_blank" class="btn-git">EXPLORE CODE</a>
+          </div>
+
+          <div class="swiper-slide glass-card">
+            <div>
+              <div class="flex justify-between items-center mb-10"><i data-feather="activity" class="text-red-500"></i><span class="text-[9px] font-black opacity-40">REPO / 04</span></div>
+              <h3 class="text-3xl font-black italic mb-4 leading-tight uppercase">Port Scanner</h3>
+              <p class="text-gray-400 text-xs leading-relaxed">Efficient Multi-Port Scanner for range-based TCP port discovery with timeout optimization.</p>
+            </div>
+            <a href="https://github.com/tapserda/python-port-scanner" target="_blank" class="btn-git">EXPLORE CODE</a>
+          </div>
+
+        </div>
+        <div class="swiper-pagination !bottom-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools" class="bg-[#050505] px-6">
+    <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-4" data-aos="fade-up">
+      <a href="https://github.com/tapserda/ip-mac-port-scanner" target="_blank" class="glass-card p-8 rounded-3xl flex items-center justify-between group">
+        <div>
+          <h4 class="font-black italic uppercase tracking-wider group-hover:text-purple-500 transition">IP/MAC Discovery</h4>
+          <p class="text-[10px] text-gray-500 mt-1">Interactive Windows Batch Nmap script.</p>
+        </div>
+        <i data-feather="external-link" class="w-4 h-4 opacity-20"></i>
+      </a>
+      <a href="https://github.com/tapserda/cpp-to-bash" target="_blank" class="glass-card p-8 rounded-3xl flex items-center justify-between group">
+        <div>
+          <h4 class="font-black italic uppercase tracking-wider group-hover:text-purple-500 transition">Makefile Automator</h4>
+          <p class="text-[10px] text-gray-500 mt-1">Unix-like environment C++ compilation script.</p>
+        </div>
+        <i data-feather="external-link" class="w-4 h-4 opacity-20"></i>
+      </a>
+      <a href="https://github.com/tapserda/sllc-python" target="_blank" class="glass-card p-8 rounded-3xl flex items-center justify-between group">
+        <div>
+          <h4 class="font-black italic uppercase tracking-wider group-hover:text-purple-500 transition">SLLC Book Management</h4>
+          <p class="text-[10px] text-gray-500 mt-1">Python Circular Singly Linked List implementation.</p>
+        </div>
+        <i data-feather="external-link" class="w-4 h-4 opacity-20"></i>
+      </a>
+      <a href="https://github.com/tapserda/affiliate-web" target="_blank" class="glass-card p-8 rounded-3xl flex items-center justify-between group">
+        <div>
+          <h4 class="font-black italic uppercase tracking-wider group-hover:text-purple-500 transition">Landing Page Logic</h4>
+          <p class="text-[10px] text-gray-500 mt-1">React JSX & Tailwind interactive architecture.</p>
+        </div>
+        <i data-feather="external-link" class="w-4 h-4 opacity-20"></i>
+      </a>
+    </div>
+  </section>
+
+  <footer id="contact" class="bg-black flex-col gap-10">
+    <div class="text-center" data-aos="zoom-in">
+      <h2 class="text-4xl md:text-5xl font-black italic tracking-tighter mb-8 uppercase">Let's Collaborate</h2>
+      <a href="mailto:tapserda.business@email.com" class="text-xs font-black border-b-2 border-purple-600 pb-2 tracking-[0.3em] hover:text-purple-500 transition">TAPSERDA.BUSINESS@EMAIL.COM</a>
+      
+      <div class="flex justify-center gap-10 mt-16 opacity-30">
+        <a href="https://github.com/tapserda" target="_blank" class="hover:text-white hover:opacity-100 transition"><i data-feather="github"></i></a>
+        <a href="#" class="hover:text-white hover:opacity-100 transition"><i data-feather="terminal"></i></a>
+        <a href="#" class="hover:text-white hover:opacity-100 transition"><i data-feather="code"></i></a>
+      </div>
+      <p class="mt-20 text-[8px] font-black tracking-[0.8em] text-gray-800 uppercase">© 2026 JEFFRI TAN APSERDA</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: false });
+    feather.replace();
+
+    const swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+      perSlideOffset: 12,
+      perSlideRotate: 2,
+      pagination: { el: ".swiper-pagination", dynamicBullets: true },
+    });
+  </script>
+</body>
+</html>
