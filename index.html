@@ -13,164 +13,202 @@
 
   <style>
     :root { --primary: #8b5cf6; --dark: #050505; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: white; overflow-x: hidden; }
-
-    /* Glass Effect */
-    .glass-card {
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    
+    /* Full Snap Scrolling Configuration */
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark);
+      color: white;
+      margin: 0;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;     /* Firefox */
     }
 
-    /* Memperbaiki Swiper agar tidak tumpang tindih teksnya */
-    .swiper { width: 100%; max-width: 400px; height: 500px; padding-top: 20px; }
+    body::-webkit-scrollbar { display: none; } /* Chrome, Safari and Opera */
+
+    section, footer {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .glass-card {
+      background: rgba(20, 20, 20, 0.75);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: border-color 0.3s ease;
+    }
+
+    .glass-card:hover { border-color: var(--primary); }
+
+    /* Swiper Deck Setup */
+    .swiper { width: 100%; max-width: 400px; height: 520px; }
     .swiper-slide { 
-      border-radius: 24px; 
+      border-radius: 28px; 
       display: flex; 
       flex-direction: column; 
       justify-content: space-between;
+      padding: 2.5rem;
     }
 
-    .btn-outline {
-      border: 1px solid rgba(255,255,255,0.2);
-      transition: all 0.3s;
+    .btn-git {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.03);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 14px;
+      border-radius: 14px;
+      text-align: center;
+      letter-spacing: 0.1em;
     }
-    .btn-outline:hover {
-      background: white;
-      color: black;
-      border-color: white;
-    }
+    .btn-git:hover { background: white; color: black; transform: scale(1.02); }
+
+    .nav-dot { width: 8px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 50%; }
   </style>
 </head>
 <body>
 
-  <nav class="fixed top-0 w-full z-50 py-6 px-8 flex justify-between items-center bg-black/20 backdrop-blur-lg">
-    <div class="text-2xl font-black italic tracking-tighter">TAPS<span class="text-purple-500">.</span></div>
-    <a href="#contact" class="text-xs font-bold tracking-widest border-b border-purple-500 pb-1 hover:text-purple-400 transition">HIRE ME</a>
+  <nav class="fixed top-0 w-full z-50 py-8 px-10 flex justify-between items-center pointer-events-none">
+    <div class="text-2xl font-black italic tracking-tighter pointer-events-auto">TAPS<span class="text-purple-500">.</span></div>
+    <div class="hidden md:flex gap-8 pointer-events-auto text-[10px] font-black tracking-[0.3em] uppercase opacity-50">
+      <a href="#profile" class="hover:opacity-100 transition">Identity</a>
+      <a href="#projects" class="hover:opacity-100 transition">Dev Stack</a>
+      <a href="#contact" class="hover:opacity-100 transition">Contact</a>
+    </div>
   </nav>
 
-  <section class="min-h-screen flex flex-col items-center justify-center text-center px-6">
-    <div data-aos="fade-down">
-        <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter mb-4">JEFFRI TAN</h1>
-        <p class="text-gray-500 tracking-[0.5em] uppercase text-xs mb-10">Web Developer & Security Enthusiast</p>
-    </div>
-    
-    <div class="swiper mySwiper" data-aos="zoom-in" data-aos-delay="200">
-      <div class="swiper-wrapper">
-        
-        <div class="swiper-slide glass-card p-8">
-          <div>
-            <div class="flex justify-between items-center mb-6">
-                <i data-feather="terminal" class="text-orange-500"></i>
-                <span class="text-[10px] font-bold bg-orange-500/20 text-orange-500 px-2 py-1 rounded">PYTHON</span>
-            </div>
-            <h3 class="text-2xl font-black italic mb-2">Shopee Scraper Toolkit</h3>
-            <p class="text-gray-400 text-xs leading-relaxed">Automated toolkit for scraping Shopee product details and shop lists using Selenium.</p>
-          </div>
-          <a href="https://github.com/tapserda/shopee-scraper-toolkit" target="_blank" class="btn-outline text-[10px] font-bold py-3 rounded-xl text-center">VIEW REPOSITORY</a>
-        </div>
-
-        <div class="swiper-slide glass-card p-8">
-          <div>
-            <div class="flex justify-between items-center mb-6">
-                <i data-feather="server" class="text-green-500"></i>
-                <span class="text-[10px] font-bold bg-green-500/20 text-green-500 px-2 py-1 rounded">DJANGO 5.2</span>
-            </div>
-            <h3 class="text-2xl font-black italic mb-2">Django Boilerplate</h3>
-            <p class="text-gray-400 text-xs leading-relaxed">Clean MVT architecture with SQLite integration for rapid web development.</p>
-          </div>
-          <a href="https://github.com/tapserda/django-basic" target="_blank" class="btn-outline text-[10px] font-bold py-3 rounded-xl text-center">VIEW REPOSITORY</a>
-        </div>
-
-        <div class="swiper-slide glass-card p-8">
-          <div>
-            <div class="flex justify-between items-center mb-6">
-                <i data-feather="shield" class="text-blue-500"></i>
-                <span class="text-[10px] font-bold bg-blue-500/20 text-blue-500 px-2 py-1 rounded">CYBERSEC</span>
-            </div>
-            <h3 class="text-2xl font-black italic mb-2">Simple Stegano</h3>
-            <p class="text-gray-400 text-xs leading-relaxed">LSB Steganography tool with GUI for hiding secret messages inside image files.</p>
-          </div>
-          <a href="https://github.com/tapserda/simple-stegano" target="_blank" class="btn-outline text-[10px] font-bold py-3 rounded-xl text-center">VIEW REPOSITORY</a>
-        </div>
-
-        <div class="swiper-slide glass-card p-8">
-          <div>
-            <div class="flex justify-between items-center mb-6">
-                <i data-feather="search" class="text-purple-500"></i>
-                <span class="text-[10px] font-bold bg-purple-500/20 text-purple-500 px-2 py-1 rounded">NETWORKING</span>
-            </div>
-            <h3 class="text-2xl font-black italic mb-2">Multi-Port Scanner</h3>
-            <p class="text-gray-400 text-xs leading-relaxed">Efficient TCP port discovery tool with timeout optimization for network auditing.</p>
-          </div>
-          <a href="https://github.com/tapserda/python-port-scanner" target="_blank" class="btn-outline text-[10px] font-bold py-3 rounded-xl text-center">VIEW REPOSITORY</a>
-        </div>
-
+  <section id="profile" class="bg-[#050505]">
+    <div class="text-center" data-aos="fade-up" data-aos-duration="1200">
+      <div class="relative inline-block mb-10">
+        <div class="absolute -inset-6 bg-purple-600/10 rounded-full blur-3xl"></div>
+        <img src="user.png" alt="Jeffri Tan" class="relative w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border border-white/10 grayscale">
       </div>
-      <div class="swiper-pagination !-bottom-2"></div>
+      <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter uppercase mb-2">JEFFRI TAN</h1>
+      <p class="text-purple-500 tracking-[0.8em] uppercase text-[9px] font-bold">Systems & Web Developer</p>
     </div>
   </section>
 
-  <section class="py-20 bg-black/50 px-6">
-    <div class="max-w-6xl mx-auto">
-        <h2 class="text-center text-2xl font-black italic mb-12 tracking-tighter uppercase">Affiliate Highlights</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="https://github.com/tapserda/affiliate-web" target="_blank" class="glass-card p-6 rounded-2xl hover:border-purple-500 transition group">
-                <i data-feather="layout" class="mb-4 text-purple-500"></i>
-                <h4 class="font-bold text-sm italic group-hover:text-purple-400">Affiliate Landing Page</h4>
-                <p class="text-[10px] text-gray-500 mt-2">React JSX + Tailwind implementation for product showcase.</p>
-            </a>
-            <a href="https://github.com/tapserda/ip-mac-port-scanner" target="_blank" class="glass-card p-6 rounded-2xl hover:border-blue-500 transition group">
-                <i data-feather="cpu" class="mb-4 text-blue-500"></i>
-                <h4 class="font-bold text-sm italic group-hover:text-blue-400">Nmap Batch Toolkit</h4>
-                <p class="text-[10px] text-gray-500 mt-2">Automated Windows Batch script for network discovery.</p>
-            </a>
-            <a href="https://github.com/tapserda/sllc-python" target="_blank" class="glass-card p-6 rounded-2xl hover:border-green-500 transition group">
-                <i data-feather="book-open" class="mb-4 text-green-500"></i>
-                <h4 class="font-bold text-sm italic group-hover:text-green-400">Book SLLC System</h4>
-                <p class="text-[10px] text-gray-500 mt-2">Data structure implementation for library management.</p>
-            </a>
-            <a href="https://github.com/tapserda/cpp-to-bash" target="_blank" class="glass-card p-6 rounded-2xl hover:border-red-500 transition group">
-                <i data-feather="settings" class="mb-4 text-red-500"></i>
-                <h4 class="font-bold text-sm italic group-hover:text-red-400">Makefile Automator</h4>
-                <p class="text-[10px] text-gray-500 mt-2">Interactive script to automate C++ compilation.</p>
-            </a>
+  <section id="projects" class="bg-[#080808]">
+    <div class="w-full flex flex-col items-center">
+      <div class="mb-10 text-center" data-aos="fade-up">
+        <h2 class="text-[10px] font-black tracking-[0.5em] uppercase text-gray-500">Selected Repositories</h2>
+      </div>
+      
+      <div class="swiper mySwiper" data-aos="zoom-in">
+        <div class="swiper-wrapper">
+          
+          <div class="swiper-slide glass-card">
+            <div>
+              <div class="flex justify-between items-center mb-10"><i data-feather="terminal" class="text-purple-500"></i><span class="text-[9px] font-black opacity-40">REPO / 01</span></div>
+              <h3 class="text-3xl font-black italic mb-4 leading-tight uppercase">Shopee Scraper Toolkit</h3>
+              <p class="text-gray-400 text-xs leading-relaxed">Advanced Python toolkit for automated marketplace data extraction using Selenium and specific detail scrapers.</p>
+            </div>
+            <a href="https://github.com/tapserda/shopee-scraper-toolkit" target="_blank" class="btn-git">EXPLORE CODE</a>
+          </div>
+
+          <div class="swiper-slide glass-card">
+            <div>
+              <div class="flex justify-between items-center mb-10"><i data-feather="server" class="text-blue-500"></i><span class="text-[9px] font-black opacity-40">REPO / 02</span></div>
+              <h3 class="text-3xl font-black italic mb-4 leading-tight uppercase">Django Boilerplate</h3>
+              <p class="text-gray-400 text-xs leading-relaxed">A refined Django 5.2 Hello World boilerplate featuring clean MVT architecture and SQLite integration.</p>
+            </div>
+            <a href="https://github.com/tapserda/django-basic" target="_blank" class="btn-git">EXPLORE CODE</a>
+          </div>
+
+          <div class="swiper-slide glass-card">
+            <div>
+              <div class="flex justify-between items-center mb-10"><i data-feather="shield" class="text-green-500"></i><span class="text-[9px] font-black opacity-40">REPO / 03</span></div>
+              <h3 class="text-3xl font-black italic mb-4 leading-tight uppercase">Simple Stegano</h3>
+              <p class="text-gray-400 text-xs leading-relaxed">User-friendly LSB Steganography tool with GUI File Picker to hide secret messages inside images safely.</p>
+            </div>
+            <a href="https://github.com/tapserda/simple-stegano" target="_blank" class="btn-git">EXPLORE CODE</a>
+          </div>
+
+          <div class="swiper-slide glass-card">
+            <div>
+              <div class="flex justify-between items-center mb-10"><i data-feather="activity" class="text-red-500"></i><span class="text-[9px] font-black opacity-40">REPO / 04</span></div>
+              <h3 class="text-3xl font-black italic mb-4 leading-tight uppercase">Port Scanner</h3>
+              <p class="text-gray-400 text-xs leading-relaxed">Efficient Multi-Port Scanner for range-based TCP port discovery with timeout optimization.</p>
+            </div>
+            <a href="https://github.com/tapserda/python-port-scanner" target="_blank" class="btn-git">EXPLORE CODE</a>
+          </div>
+
         </div>
+        <div class="swiper-pagination !bottom-4"></div>
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="py-32 px-6 flex justify-center">
-    <div class="max-w-md w-full text-center">
-        <h2 class="text-4xl font-black italic mb-8">GET IN TOUCH</h2>
-        <p class="text-gray-500 text-sm mb-10 italic">"Building the future, one line of code at a time."</p>
-        <a href="mailto:tapserda.business@email.com" class="inline-block bg-white text-black font-bold px-10 py-4 rounded-full hover:invert transition uppercase tracking-widest text-xs">Send Email</a>
+  <section id="tools" class="bg-[#050505] px-6">
+    <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-4" data-aos="fade-up">
+      <a href="https://github.com/tapserda/ip-mac-port-scanner" target="_blank" class="glass-card p-8 rounded-3xl flex items-center justify-between group">
+        <div>
+          <h4 class="font-black italic uppercase tracking-wider group-hover:text-purple-500 transition">IP/MAC Discovery</h4>
+          <p class="text-[10px] text-gray-500 mt-1">Interactive Windows Batch Nmap script.</p>
+        </div>
+        <i data-feather="external-link" class="w-4 h-4 opacity-20"></i>
+      </a>
+      <a href="https://github.com/tapserda/cpp-to-bash" target="_blank" class="glass-card p-8 rounded-3xl flex items-center justify-between group">
+        <div>
+          <h4 class="font-black italic uppercase tracking-wider group-hover:text-purple-500 transition">Makefile Automator</h4>
+          <p class="text-[10px] text-gray-500 mt-1">Unix-like environment C++ compilation script.</p>
+        </div>
+        <i data-feather="external-link" class="w-4 h-4 opacity-20"></i>
+      </a>
+      <a href="https://github.com/tapserda/sllc-python" target="_blank" class="glass-card p-8 rounded-3xl flex items-center justify-between group">
+        <div>
+          <h4 class="font-black italic uppercase tracking-wider group-hover:text-purple-500 transition">SLLC Book Management</h4>
+          <p class="text-[10px] text-gray-500 mt-1">Python Circular Singly Linked List implementation.</p>
+        </div>
+        <i data-feather="external-link" class="w-4 h-4 opacity-20"></i>
+      </a>
+      <a href="https://github.com/tapserda/affiliate-web" target="_blank" class="glass-card p-8 rounded-3xl flex items-center justify-between group">
+        <div>
+          <h4 class="font-black italic uppercase tracking-wider group-hover:text-purple-500 transition">Landing Page Logic</h4>
+          <p class="text-[10px] text-gray-500 mt-1">React JSX & Tailwind interactive architecture.</p>
+        </div>
+        <i data-feather="external-link" class="w-4 h-4 opacity-20"></i>
+      </a>
     </div>
   </section>
 
-  <footer class="py-10 text-center text-gray-700 text-[10px] font-bold tracking-[0.5em] uppercase">
-    &copy; 2026 JEFFRI TAN APSERDA • BUILT WITH PASSION
+  <footer id="contact" class="bg-black flex-col gap-10">
+    <div class="text-center" data-aos="zoom-in">
+      <h2 class="text-4xl md:text-5xl font-black italic tracking-tighter mb-8 uppercase">Let's Collaborate</h2>
+      <a href="mailto:tapserda.business@email.com" class="text-xs font-black border-b-2 border-purple-600 pb-2 tracking-[0.3em] hover:text-purple-500 transition">TAPSERDA.BUSINESS@EMAIL.COM</a>
+      
+      <div class="flex justify-center gap-10 mt-16 opacity-30">
+        <a href="https://github.com/tapserda" target="_blank" class="hover:text-white hover:opacity-100 transition"><i data-feather="github"></i></a>
+        <a href="#" class="hover:text-white hover:opacity-100 transition"><i data-feather="terminal"></i></a>
+        <a href="#" class="hover:text-white hover:opacity-100 transition"><i data-feather="code"></i></a>
+      </div>
+      <p class="mt-20 text-[8px] font-black tracking-[0.8em] text-gray-800 uppercase">© 2026 JEFFRI TAN APSERDA</p>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init();
+    AOS.init({ once: false });
     feather.replace();
 
-    // Swiper dengan "Cards Effect" yang sudah diperbaiki jaraknya
     const swiper = new Swiper(".mySwiper", {
       effect: "cards",
       grabCursor: true,
-      perSlideOffset: 8,
+      perSlideOffset: 12,
       perSlideRotate: 2,
-      rotate: true,
-      slideShadows: true,
-      pagination: {
-        el: ".swiper-pagination",
-        dynamicBullets: true,
-      },
+      pagination: { el: ".swiper-pagination", dynamicBullets: true },
     });
   </script>
 </body>
