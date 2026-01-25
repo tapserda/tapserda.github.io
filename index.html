@@ -7,240 +7,173 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <script src="https://unpkg.com/feather-icons"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <style>
-    :root {
-      --primary: #8b5cf6;
-      --dark: #0f172a;
-    }
-    html {
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
-    }
-    section {
-      scroll-snap-align: start;
-      min-height: 100vh;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--dark);
-      color: white;
-    }
+    :root { --primary: #8b5cf6; --dark: #0a0a0a; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: white; }
 
-    /* Modern Glassmorphism */
     .glass-card {
       background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
     }
-    .glass-card:hover {
-      background: rgba(255, 255, 255, 0.07);
+    
+    .project-grid-card:hover {
       border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transform: translateY(-5px);
     }
 
-    /* Glow Effect */
-    .glow-text {
-      text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-    }
+    /* Memperbaiki tinggi Swiper agar tidak tumpang tindih */
+    .swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
+    .swiper-slide { height: auto; }
 
-    /* Expandable logic */
-    .expandable {
-      max-height: 0;
-      opacity: 0;
-      transition: all 0.5s ease;
-    }
-    .expandable.show {
-      max-height: 500px;
-      opacity: 1;
-      padding-top: 1.5rem;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #0f172a; }
-    ::-webkit-scrollbar-thumb { background: #4c1d95; border-radius: 10px; }
-
-    .swiper-pagination-bullet { background: white !important; opacity: 0.5; }
-    .swiper-pagination-bullet-active { background: var(--primary) !important; opacity: 1; }
+    .expandable { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.5s ease; }
+    .expandable.show { max-height: 500px; opacity: 1; margin-top: 1rem; }
   </style>
 </head>
+<body>
 
-<body class="overflow-x-hidden">
-
-  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 py-5 px-10 flex items-center justify-between transition-all duration-500">
-    <div class="text-2xl font-black tracking-tighter text-white glow-text">TAPS<span class="text-purple-500">.</span></div>
-    <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-gray-400">
-        <a href="#projects" class="hover:text-white transition">Projects</a>
-        <a href="#contact" class="hover:text-white transition">Contact</a>
-    </div>
-    <a href="#contact" class="bg-purple-600 text-white text-xs font-bold px-6 py-2.5 rounded-full hover:bg-purple-500 hover:scale-105 transition-all shadow-lg shadow-purple-900/20">
-      GET IN TOUCH
-    </a>
+  <nav class="fixed top-0 w-full z-50 py-5 px-10 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/5">
+    <div class="text-xl font-black italic tracking-tighter">TAPS<span class="text-purple-500">.</span></div>
+    <a href="#contact" class="bg-purple-600 px-5 py-2 rounded-full text-xs font-bold hover:bg-purple-500 transition">CONTACT ME</a>
   </nav>
 
-  <section class="relative flex items-center justify-center px-6 overflow-hidden">
-    <div id="particles-js" class="absolute inset-0 z-0"></div>
-    
-    <div class="max-w-5xl w-full glass-card rounded-3xl p-8 md:p-16 z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center" data-aos="zoom-in">
-      <div class="relative group mx-auto">
-        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
-        <img src="user.png" alt="Jeffri" class="relative w-56 h-56 rounded-full object-cover border-2 border-white/10 shadow-2xl">
-      </div>
-      
+  <section class="min-h-screen flex items-center justify-center pt-20 px-6">
+    <div class="max-w-5xl w-full glass-card rounded-3xl p-10 grid md:grid-cols-2 gap-10 items-center">
       <div class="text-center md:text-left">
-        <h1 class="text-5xl font-black mb-4 tracking-tight leading-tight">
-          JEFFRI TAN <br><span class="text-purple-500">APSERDA</span>
-        </h1>
-        <p class="text-gray-400 text-lg mb-8 leading-relaxed">
-          Crafting digital experiences through <span class="text-white font-semibold">Clean Code</span> and <span class="text-white font-semibold">User-Centric Design</span>.
-        </p>
-        
-        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-          <span class="px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold border border-white/10">React.js</span>
-          <span class="px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold border border-white/10">Tailwind</span>
-          <span class="px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold border border-white/10">Python</span>
-          <span class="px-4 py-1.5 bg-white/5 rounded-full text-xs font-semibold border border-white/10">Laravel</span>
+        <h1 class="text-5xl font-black leading-tight mb-4 uppercase italic">Jeffri Tan<br><span class="text-purple-500">Apserda</span></h1>
+        <p class="text-gray-400 mb-6">Web Developer & Automation Expert. Fokus pada pengembangan landing page performa tinggi dan skrip otomasi Python.</p>
+        <div class="flex gap-3 justify-center md:justify-start">
+            <div class="bg-white/5 p-2 rounded-lg border border-white/10"><i data-feather="code" class="w-4 h-4 text-purple-400"></i></div>
+            <div class="bg-white/5 p-2 rounded-lg border border-white/10"><i data-feather="database" class="w-4 h-4 text-blue-400"></i></div>
+            <div class="bg-white/5 p-2 rounded-lg border border-white/10"><i data-feather="terminal" class="w-4 h-4 text-green-400"></i></div>
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <div class="w-64 h-64 rounded-2xl rotate-3 border-2 border-purple-500 overflow-hidden shadow-[0_0_50px_rgba(139,92,246,0.2)]">
+            <img src="user.png" class="w-full h-full object-cover -rotate-3 hover:scale-110 transition duration-700">
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects" class="relative flex items-center py-20 bg-[#0a0a0a]">
-    <div class="max-w-4xl mx-auto w-full px-6">
-      <div class="mb-12 text-center" data-aos="fade-up">
-        <h2 class="text-3xl font-black mb-2 uppercase tracking-tighter">Selected Work</h2>
-        <div class="h-1 w-20 bg-purple-600 mx-auto"></div>
-      </div>
-
-      <div class="swiper mySwiper">
+  <section id="projects" class="py-20 bg-black/30">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-2xl font-black italic mb-10 text-center uppercase tracking-widest">Featured Work</h2>
+      
+      <div class="swiper mainSwiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="glass-card p-8 rounded-2xl">
               <div class="flex justify-between items-start mb-4">
-                <div>
-                    <h3 class="text-2xl font-bold italic">Online Shop Website</h3>
-                    <p class="text-purple-400 text-xs font-bold uppercase tracking-widest mt-1">E-Commerce Solution</p>
-                </div>
-                <i data-feather="shopping-bag" class="text-purple-500"></i>
+                <h3 class="text-2xl font-bold">Online Shop Website</h3>
+                <span class="bg-purple-500/20 text-purple-400 text-[10px] px-2 py-1 rounded font-bold uppercase">E-Commerce</span>
               </div>
-              <p class="text-gray-400 mb-6 text-sm">Website responsif dengan integrasi Shopify/Wordpress untuk performa jualan maksimal.</p>
-              <button onclick="toggleDetail(this, 'detail1')" class="bg-white/10 hover:bg-white/20 text-white text-xs px-6 py-2 rounded-lg transition-all font-bold uppercase">View Case Study</button>
-              
-              <div id="detail1" class="expandable">
-                <img src="project1.png" class="w-full h-48 object-cover rounded-xl border border-white/10 grayscale hover:grayscale-0 transition-all duration-500">
-              </div>
+              <p class="text-gray-400 text-sm mb-6">Solusi toko online responsif dengan optimasi konversi.</p>
+              <button onclick="toggleDetail(this, 'd1')" class="text-xs font-bold text-purple-400 hover:text-white transition">VIEW CASE STUDY</button>
+              <div id="d1" class="expandable"><img src="project1.png" class="rounded-xl w-full h-40 object-cover border border-white/10"></div>
             </div>
           </div>
-
           <div class="swiper-slide">
             <div class="glass-card p-8 rounded-2xl">
               <div class="flex justify-between items-start mb-4">
-                <div>
-                    <h3 class="text-2xl font-bold italic">Data Scrapper</h3>
-                    <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mt-1">Python Automation</p>
-                </div>
-                <i data-feather="database" class="text-blue-500"></i>
+                <h3 class="text-2xl font-bold">Data Scrapper</h3>
+                <span class="bg-blue-500/20 text-blue-400 text-[10px] px-2 py-1 rounded font-bold uppercase">Python</span>
               </div>
-              <p class="text-gray-400 mb-6 text-sm">Otomasi pengambilan data marketplace secara real-time menggunakan Selenium/BeautifulSoup.</p>
-              <button onclick="toggleDetail(this, 'detail2')" class="bg-white/10 hover:bg-white/20 text-white text-xs px-6 py-2 rounded-lg transition-all font-bold uppercase">View Case Study</button>
-              
-              <div id="detail2" class="expandable">
-                <img src="project2.png" class="w-full h-48 object-cover rounded-xl border border-white/10">
-              </div>
+              <p class="text-gray-400 text-sm mb-6">Automasi pengambilan data marketplace menggunakan Python Selenium.</p>
+              <button onclick="toggleDetail(this, 'd2')" class="text-xs font-bold text-blue-400 hover:text-white transition">VIEW CASE STUDY</button>
+              <div id="d2" class="expandable"><img src="project2.png" class="rounded-xl w-full h-40 object-cover border border-white/10"></div>
             </div>
           </div>
         </div>
-        <div class="swiper-pagination !-bottom-10"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="flex items-center justify-center bg-purple-600">
-    <div class="max-w-lg w-full px-6" data-aos="fade-up">
-      <div class="glass-card p-10 rounded-3xl bg-white/10 border-white/20 backdrop-blur-2xl">
-        <h2 class="text-3xl font-black mb-8 text-center uppercase italic">Start a Conversation</h2>
-        <form onsubmit="sendMail(event)" class="space-y-4">
-          <input type="text" id="nama" placeholder="Your Name" class="w-full p-4 rounded-xl bg-black/20 border border-white/10 focus:border-white focus:outline-none transition-all placeholder:text-white/30 text-sm" required>
-          <input type="email" id="email" placeholder="Email Address" class="w-full p-4 rounded-xl bg-black/20 border border-white/10 focus:border-white focus:outline-none transition-all placeholder:text-white/30 text-sm" required>
-          <textarea id="pesan" placeholder="Tell me about your project..." rows="4" class="w-full p-4 rounded-xl bg-black/20 border border-white/10 focus:border-white focus:outline-none transition-all placeholder:text-white/30 text-sm" required></textarea>
-          <button type="submit" class="w-full bg-white text-purple-600 font-black py-4 rounded-xl hover:bg-gray-100 transition-all uppercase tracking-widest text-xs shadow-xl">Send Message</button>
-        </form>
+  <section class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-black italic mb-10 text-center uppercase tracking-widest text-orange-500">Shopee Affiliate Collection</h2>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="glass-card p-4 rounded-2xl project-grid-card">
+          <img src="https://down-id.img.susercontent.com/file/id-11134207-7rasm-m0u97zreuv7if3.webp" class="rounded-xl aspect-square object-cover mb-4">
+          <h4 class="text-sm font-bold truncate">Kaos Luffy Kecil</h4>
+          <p class="text-[10px] text-gray-500 mb-3 uppercase">Shopee Affiliate</p>
+          <a href="https://s.shopee.co.id/BLclsYHYN" class="block text-center bg-orange-500 text-white text-[10px] font-bold py-2 rounded-lg">BELI SEKARANG</a>
+        </div>
+        <div class="glass-card p-4 rounded-2xl project-grid-card">
+          <img src="https://down-id.img.susercontent.com/file/sg-11134201-825ak-mfxke83d9p1qb1.webp" class="rounded-xl aspect-square object-cover mb-4">
+          <h4 class="text-sm font-bold truncate">Kaos Shin-Chan</h4>
+          <p class="text-[10px] text-gray-500 mb-3 uppercase">Shopee Affiliate</p>
+          <a href="https://s.shopee.co.id/gHtqj7uz5" class="block text-center bg-orange-500 text-white text-[10px] font-bold py-2 rounded-lg">BELI SEKARANG</a>
+        </div>
+        <div class="glass-card p-4 rounded-2xl project-grid-card">
+          <img src="https://down-id.img.susercontent.com/file/id-11134207-7r98y-lx6lgmalnwv280.webp" class="rounded-xl aspect-square object-cover mb-4">
+          <h4 class="text-sm font-bold truncate">Jaket Traktop Windbreaker</h4>
+          <p class="text-[10px] text-gray-500 mb-3 uppercase">Shopee Affiliate</p>
+          <a href="https://s.shopee.co.id/5AkKzjp6dY" class="block text-center bg-orange-500 text-white text-[10px] font-bold py-2 rounded-lg">BELI SEKARANG</a>
+        </div>
+        <div class="glass-card p-4 rounded-2xl project-grid-card">
+          <img src="https://down-id.img.susercontent.com/file/sg-11134201-8258y-mg64ethfzmkv0c.webp" class="rounded-xl aspect-square object-cover mb-4">
+          <h4 class="text-sm font-bold truncate">Jaket Fujin Nylon</h4>
+          <p class="text-[10px] text-gray-500 mb-3 uppercase">Shopee Affiliate</p>
+          <a href="https://s.shopee.co.id/3qExbdX0yM" class="block text-center bg-orange-500 text-white text-[10px] font-bold py-2 rounded-lg">BELI SEKARANG</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="py-12 bg-[#050505] text-center border-t border-white/5">
-    <div class="flex justify-center gap-6 mb-6">
-        <a href="#" class="text-gray-500 hover:text-white transition"><i data-feather="github"></i></a>
-        <a href="#" class="text-gray-500 hover:text-white transition"><i data-feather="instagram"></i></a>
-        <a href="#" class="text-gray-500 hover:text-white transition"><i data-feather="linkedin"></i></a>
+  <section id="contact" class="py-20 px-6 bg-purple-600">
+    <div class="max-w-xl mx-auto glass-card p-10 rounded-3xl text-center">
+      <h2 class="text-3xl font-black italic mb-6">LET'S WORK!</h2>
+      <form onsubmit="sendMail(event)" class="space-y-4">
+        <input type="text" id="nama" placeholder="Nama" class="w-full p-4 rounded-xl bg-black/20 border-white/10 text-white placeholder:text-white/50 text-sm outline-none" required>
+        <textarea id="pesan" placeholder="Pesan" rows="4" class="w-full p-4 rounded-xl bg-black/20 border-white/10 text-white placeholder:text-white/50 text-sm outline-none" required></textarea>
+        <button type="submit" class="w-full bg-white text-purple-600 font-bold py-4 rounded-xl shadow-xl hover:scale-105 transition">SEND MESSAGE</button>
+      </form>
     </div>
-    <p class="text-gray-600 text-[10px] tracking-[0.5em] uppercase font-bold">
-      &copy; 2026 Jeffri Tan Apserda • All Rights Reserved
-    </p>
+  </section>
+
+  <footer class="py-10 text-center text-gray-600 text-[10px] tracking-[0.5em] uppercase font-bold">
+    &copy; 2026 Jeffri Tan Apserda
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
   <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init();
     feather.replace();
 
-    // Swiper Config
-    const swiper = new Swiper(".mySwiper", {
-      effect: "cards",
-      grabCursor: true,
+    // Perbaikan Konfigurasi Swiper (Menghapus effect cards agar tidak tertimpa)
+    const swiper = new Swiper(".mainSwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: { delay: 3000 },
       pagination: { el: ".swiper-pagination", clickable: true },
+      breakpoints: {
+        768: { slidesPerView: 2 }
+      }
     });
 
-    // Toggle Detail
-    function toggleDetail(button, id) {
-      const detail = document.getElementById(id);
-      const isOpen = detail.classList.contains('show');
-      detail.classList.toggle('show');
-      button.innerText = isOpen ? "View Case Study" : "Close Detail";
+    function toggleDetail(btn, id) {
+      const el = document.getElementById(id);
+      const isShow = el.classList.contains('show');
+      el.classList.toggle('show');
+      btn.innerText = isShow ? "VIEW CASE STUDY" : "CLOSE DETAIL";
     }
 
-    // Particles
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 40 },
-        color: { value: "#8b5cf6" },
-        opacity: { value: 0.2 },
-        size: { value: 3 },
-        line_linked: { enable: true, distance: 150, color: "#8b5cf6", opacity: 0.1, width: 1 },
-        move: { enable: true, speed: 1 }
-      }
-    });
-
-    // Navbar Scroll Effect
-    window.addEventListener("scroll", () => {
-      const nav = document.getElementById("navbar");
-      if (window.scrollY > 50) {
-        nav.classList.add("bg-dark/80", "backdrop-blur-md", "py-3", "border-b", "border-white/5");
-        nav.style.backgroundColor = "rgba(15, 23, 42, 0.9)";
-      } else {
-        nav.classList.remove("bg-dark/80", "backdrop-blur-md", "py-3", "border-b", "border-white/5");
-        nav.style.backgroundColor = "transparent";
-      }
-    });
-
-    // Mail Logic
     function sendMail(e) {
       e.preventDefault();
       const nama = document.getElementById('nama').value;
-      const email = document.getElementById('email').value;
       const pesan = document.getElementById('pesan').value;
-      window.location.href = `mailto:tapserda.business@email.com?subject=Project Inquiry from ${nama}&body=${pesan} (${email})`;
+      window.location.href = `mailto:tapserda.business@email.com?subject=Inquiry from ${nama}&body=${pesan}`;
     }
   </script>
 </body>
